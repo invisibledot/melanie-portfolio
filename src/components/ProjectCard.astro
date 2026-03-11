@@ -1,0 +1,15 @@
+---
+const { title, cover, slug } = Astro.props;
+---
+
+<a href={`/work/${slug}`} class="block group">
+
+  <img
+    src={cover}
+    alt={title}
+    class="rounded-lg mb-3 group-hover:opacity-90 transition"
+  />
+
+  <h3 class="text-lg font-semibold">{title}</h3>
+
+</a>

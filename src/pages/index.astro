@@ -1,17 +1,31 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
 
+const projects = await getCollection("projects");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Stephen Crowe, Graphic Designer & Illustrator"
+  description="Portfolio of Stephen Crowe — graphic design, illustration, and comics."
+  url="https://invisibledot.net"
+>
+
+<h1 class="text-4xl font-bold mb-12">
+Graphic Design & Illustration
+</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+{projects.map((project) => (
+  <ProjectCard
+    title={project.data.title}
+    cover={project.data.cover}
+    slug={project.slug}
+  />
+))}
+
+</div>
+
+</BaseLayout>

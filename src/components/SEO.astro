@@ -1,0 +1,46 @@
+---
+const {
+  title,
+  description,
+  image,
+  url,
+  type = "website"
+} = Astro.props;
+
+const siteName = "Stephen Crowe";
+const fullTitle = title ? `${title} | ${siteName}` : siteName;
+---
+
+<title>{fullTitle}</title>
+
+<meta name="description" content={description} />
+
+<link rel="canonical" href={url} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+{image && <meta property="og:image" content={image} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={image} />}
+
+<script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "author": {
+      "@type": "Person",
+      "name": "Stephen Crowe"
+    }
+  })}
+</script>

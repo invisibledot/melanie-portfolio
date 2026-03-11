@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const comics = await getCollection("comics");
+  return comics.map((comic) => ({
+    params: { slug: comic.slug },
+    props: { comic }
+  }));
+}
+
+const { comic } = Astro.props;
+const { title, year, tagline, images, buyLink } = comic.data;
+const { Content } = await comic.render();
+---
+
+<BaseLayout
+  title={title}
+  description={tagline}
+  image={images[0]}
+  url={`https://invisibledot.net/comics/${comic.slug}`}
+>
+
+<h1 class="text-4xl font-bold mb-4">{title}</h1>
+
+<p class="mb-6 opacity-70">
+{year}
+</p>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+  <!-- LEFT COLUMN: TEXT -->
+  <div class="lg:col-span-4">
+    <div class="prose prose-lg font-serif max-w-none">
+      <Content />
+    </div>
+    {buyLink && (
+<div class="flex justify-center">
+  <a
+    href={buyLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-block m-8 px-6 py-3 bg-black text-white rounded-lg hover:opacity-80 transition"
+  >
+    Buy Now
+  </a>
+</div>
+)}
+  </div>
+
+  <!-- RIGHT COLUMN: IMAGES -->
+  <div class="lg:col-span-8">
+    <div class="flex flex-col gap-6">
+
+      {images[0] && (
+        <img
+          src={images[0]}
+          alt=""
+          class="rounded-lg w-full"
+          loading="lazy"
+        />
+      )}
+
+      {images.length > 1 && (
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {images.slice(1).map((img) => (
+            <img
+              src={img}
+              alt=""
+              class="rounded-lg w-full"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      )}
+
+    </div>
+  </div>
+
+</div>
+
+</BaseLayout>

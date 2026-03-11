@@ -1,0 +1,29 @@
+---
+const { images } = Astro.props;
+---
+
+<div class="flex flex-col gap-6">
+  <!-- First image full width -->
+  {images[0] && (
+    <img
+      src={images[0]}
+      alt=""
+      class="rounded-lg w-full"
+      loading="lazy"
+    />
+  )}
+
+  <!-- Remaining images in a smaller grid -->
+  {images.length > 1 && (
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {images.slice(1).map((img) => (
+        <img
+          src={img}
+          alt=""
+          class="rounded-lg w-full"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  )}
+</div>
