@@ -32,30 +32,52 @@ const {
 
   <body class="bg-white text-black max-w-8xl mx-auto p-6">
 
-    <header class="p-6 flex justify-between">
-      <a href="/" class="text-xl font-bold">Stephen Crowe</a>
+<header class="p-6 flex items-center justify-between">
 
-      <nav class="flex gap-6">
-        <a href="/">Work</a>
-        <a href="/comics">Comics</a>
-        <a href="/about">About</a>
-      </nav>
-    </header>
+  <!-- Logo -->
+  <a href="/" class="text-xl font-semibold tracking-tight">
+    Stephen Crowe
+  </a>
+
+  <!-- Desktop Nav -->
+  <nav class="hidden md:flex gap-8 text-sm font-medium">
+    <a href="/" class="hover:opacity-60 transition">Work</a>
+    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+    <a href="/about" class="hover:opacity-60 transition">About</a>
+  </nav>
+
+  <!-- Mobile Button -->
+  <button
+    class="md:hidden"
+    aria-label="Toggle Menu"
+    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+  >
+    ☰
+  </button>
+
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
+  <nav class="flex flex-col gap-4 text-sm font-medium">
+    <a href="/" class="hover:opacity-60 transition">Work</a>
+    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+    <a href="/about" class="hover:opacity-60 transition">About</a>
+  </nav>
+</div>
 
     <main class="max-w-8xl mx-auto p-6">
       <slot />
     </main>
 
-    <footer class="p-6 flex justify-between">
-    <div class="text-left text-sm opacity-70">
+    <footer class="p-6 flex-col md:flex-row justify-between">
+    <div class="text-center md:text-left text-sm opacity-70">
       © {new Date().getFullYear()} Stephen Crowe
       </div>
-    <div class="text-right text-sm opacity-70">
-<a href="https://invisibledot.substack.com/">Substack</a> •
-<a href="https://www.instagram.com/invisibledot/">Instagram</a> •
-<a href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
-</div>
-    </footer>
-
+    <div class="text-center md:text-right text-sm opacity-70">
+      <a class="hover:opacity-60 href="https://invisibledot.substack.com/">Substack</a> •
+      <a class="hover:opacity-60 href="https://www.instagram.com/invisibledot/">Instagram</a> •
+      <a class="hover:opacity-60 href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
+      </div>
   </body>
 </html>
