@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
+import { useState } from 'astro/jsx-runtime';
 
 const {
   title,
@@ -32,30 +33,49 @@ const {
 
   <body class="bg-white text-black max-w-8xl mx-auto p-6">
 
-<header class="p-6 flex items-center justify-between">
+<header class="p-6 flex justify-between items-center bg-white shadow-md">
+  <!-- Logo / Site Name -->
+  <a href="/" class="text-xl font-bold">Stephen Crowe</a>
 
-  <!-- Logo -->
-  <a href="/" class="text-xl font-semibold tracking-tight">
-    Stephen Crowe
-  </a>
-
-  <!-- Desktop Nav -->
-  <nav class="hidden md:flex gap-8 text-sm font-medium">
-    <a href="/" class="hover:opacity-60 transition">Work</a>
-    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
-    <a href="/about" class="hover:opacity-60 transition">About</a>
+  <!-- Desktop nav -->
+  <nav class="hidden md:flex gap-6">
+    <a href="/">Work</a>
+    <a href="/comics">Comics</a>
+    <a href="/about">About</a>
   </nav>
 
-  <!-- Mobile Button -->
+  <!-- Hamburger button -->
   <button
-    class="md:hidden"
-    aria-label="Toggle Menu"
-    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+    class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1"
+    aria-label="Menu"
+    onClick={() => toggleMenu()}
   >
-    ☰
+    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
+    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
+    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
   </button>
 
+  <!-- Mobile menu -->
+  <nav
+    id="mobile-menu"
+    class="hidden absolute top-full left-0 w-full bg-white flex flex-col items-center gap-4 py-4 md:hidden"
+  >
+    <a href="/">Work</a>
+    <a href="/comics">Comics</a>
+    <a href="/about">About</a>
+  </nav>
 </header>
+
+<script type="module" client:load>
+  const menuButton = document.querySelector('button[aria-label="Menu"]');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+  }
+
+  menuButton.addEventListener('click', toggleMenu);
+</script>
 
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
