@@ -30,9 +30,7 @@ const { title, description, image, url } = Astro.props;
     <header class="p-6 flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="/" class="text-xl font-semibold tracking-tight">
-        Stephen Crowe
-      </a>
+      <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe</a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex gap-8 text-sm font-medium">
@@ -41,10 +39,8 @@ const { title, description, image, url } = Astro.props;
         <a href="/about" class="hover:opacity-60 transition">About</a>
       </nav>
 
-      <!-- Mobile Menu Toggle -->
-      <button id="mobile-button" class="md:hidden text-2xl" aria-label="Toggle Menu">
-        ☰
-      </button>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-button" class="md:hidden text-2xl" aria-label="Toggle Menu">☰</button>
 
     </header>
 
@@ -74,8 +70,8 @@ const { title, description, image, url } = Astro.props;
       </div>
     </footer>
 
-    <!-- Mobile Menu JS -->
-    <script>
+    <!-- Mobile Menu Script (Astro client:load) -->
+    <script client:load>
       const button = document.getElementById('mobile-button');
       const menu = document.getElementById('mobile-menu');
 
