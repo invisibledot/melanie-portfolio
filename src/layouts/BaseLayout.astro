@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
+import MobileMenuToggle from "../components/MobileMenuToggle.astro";
 
 const { title, description, image, url } = Astro.props;
 ---
@@ -16,42 +17,23 @@ const { title, description, image, url } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- SEO -->
-    <SEO
-      title={title}
-      description={description}
-      image={image}
-      url={url}
-    />
+    <SEO title={title} description={description} image={image} url={url} />
   </head>
 
   <body class="bg-white text-black max-w-8xl mx-auto p-6 font-sans">
 
     <!-- Header -->
-    <header class="p-6 flex items-center justify-between">
+<header class="p-6 flex items-center justify-between relative">
+  <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe</a>
 
-      <!-- Logo -->
-      <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe test</a>
+  <nav class="hidden md:flex gap-8 text-sm font-medium">
+    <a href="/" class="hover:opacity-60 transition">Work</a>
+    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+    <a href="/about" class="hover:opacity-60 transition">About</a>
+  </nav>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex gap-8 text-sm font-medium">
-        <a href="/" class="hover:opacity-60 transition">Work</a>
-        <a href="/comics" class="hover:opacity-60 transition">Comics</a>
-        <a href="/about" class="hover:opacity-60 transition">About</a>
-      </nav>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobile-button" class="md:hidden text-2xl" aria-label="Toggle Menu">☰</button>
-
-    </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
-      <nav class="flex flex-col gap-4 text-sm font-medium">
-        <a href="/" class="hover:opacity-60 transition">Work</a>
-        <a href="/comics" class="hover:opacity-60 transition">Comics</a>
-        <a href="/about" class="hover:opacity-60 transition">About</a>
-      </nav>
-    </div>
+  <MobileMenuToggle />
+</header>
 
     <!-- Main Content -->
     <main class="max-w-8xl mx-auto p-6">
@@ -69,16 +51,6 @@ const { title, description, image, url } = Astro.props;
         <a class="hover:opacity-60" href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
       </div>
     </footer>
-
-    <!-- Mobile Menu Script (Astro client:load) -->
-    <script client:load>
-      const button = document.getElementById('mobile-button');
-      const menu = document.getElementById('mobile-menu');
-
-      button.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-      });
-    </script>
 
   </body>
 </html>
