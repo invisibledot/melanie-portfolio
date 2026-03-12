@@ -1,28 +1,21 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
-import { useState } from 'astro/jsx-runtime';
 
-const {
-  title,
-  description,
-  image,
-  url
-} = Astro.props;
+const { title, description, image, url } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- SEO -->
     <SEO
       title={title}
       description={description}
@@ -31,73 +24,65 @@ const {
     />
   </head>
 
-  <body class="bg-white text-black max-w-8xl mx-auto p-6">
+  <body class="bg-white text-black max-w-8xl mx-auto p-6 font-sans">
 
-<header class="p-6 flex justify-between items-center bg-white shadow-md">
-  <!-- Logo / Site Name -->
-  <a href="/" class="text-xl font-bold">Stephen Crowe</a>
+    <!-- Header -->
+    <header class="p-6 flex items-center justify-between">
 
-  <!-- Desktop nav -->
-  <nav class="hidden md:flex gap-6">
-    <a href="/">Work</a>
-    <a href="/comics">Comics</a>
-    <a href="/about">About</a>
-  </nav>
+      <!-- Logo -->
+      <a href="/" class="text-xl font-semibold tracking-tight">
+        Stephen Crowe
+      </a>
 
-  <!-- Hamburger button -->
-  <button
-    class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1"
-    aria-label="Menu"
-    onClick={() => toggleMenu()}
-  >
-    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
-    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
-    <span class="block w-6 h-0.5 bg-black transition-transform"></span>
-  </button>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="/" class="hover:opacity-60 transition">Work</a>
+        <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+        <a href="/about" class="hover:opacity-60 transition">About</a>
+      </nav>
 
-  <!-- Mobile menu -->
-  <nav
-    id="mobile-menu"
-    class="hidden absolute top-full left-0 w-full bg-white flex flex-col items-center gap-4 py-4 md:hidden"
-  >
-    <a href="/">Work</a>
-    <a href="/comics">Comics</a>
-    <a href="/about">About</a>
-  </nav>
-</header>
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-button" class="md:hidden text-2xl" aria-label="Toggle Menu">
+        ☰
+      </button>
 
-<script type="module" client:load>
-  const menuButton = document.querySelector('button[aria-label="Menu"]');
-  const mobileMenu = document.getElementById('mobile-menu');
+    </header>
 
-  function toggleMenu() {
-    mobileMenu.classList.toggle('hidden');
-  }
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
+      <nav class="flex flex-col gap-4 text-sm font-medium">
+        <a href="/" class="hover:opacity-60 transition">Work</a>
+        <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+        <a href="/about" class="hover:opacity-60 transition">About</a>
+      </nav>
+    </div>
 
-  menuButton.addEventListener('click', toggleMenu);
-</script>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
-  <nav class="flex flex-col gap-4 text-sm font-medium">
-    <a href="/" class="hover:opacity-60 transition">Work</a>
-    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
-    <a href="/about" class="hover:opacity-60 transition">About</a>
-  </nav>
-</div>
-
+    <!-- Main Content -->
     <main class="max-w-8xl mx-auto p-6">
       <slot />
     </main>
 
-    <footer class="p-6 flex-col md:flex-row justify-between">
-    <div class="text-center md:text-left text-sm opacity-70">
-      © {new Date().getFullYear()} Stephen Crowe
+    <!-- Footer -->
+    <footer class="p-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-4 md:gap-0">
+      <div class="text-center md:text-left text-sm opacity-70">
+        © {new Date().getFullYear()} Stephen Crowe
       </div>
-    <div class="text-center md:text-right text-sm opacity-70">
-      <a class="hover:opacity-60" href="https://invisibledot.substack.com/">Substack</a> •
-      <a class="hover:opacity-60" href="https://www.instagram.com/invisibledot/">Instagram</a> •
-      <a class="hover:opacity-60" href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
+      <div class="text-center md:text-right text-sm opacity-70 flex gap-2">
+        <a class="hover:opacity-60" href="https://invisibledot.substack.com/">Substack</a>•
+        <a class="hover:opacity-60" href="https://www.instagram.com/invisibledot/">Instagram</a>•
+        <a class="hover:opacity-60" href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
       </div>
+    </footer>
+
+    <!-- Mobile Menu JS -->
+    <script>
+      const button = document.getElementById('mobile-button');
+      const menu = document.getElementById('mobile-menu');
+
+      button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+
   </body>
 </html>
