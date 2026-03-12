@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
-import MobileMenuToggle from "../components/MobileMenuToggle.astro";
 
 const { title, description, image, url } = Astro.props;
 ---
@@ -23,19 +22,19 @@ const { title, description, image, url } = Astro.props;
   <body class="bg-white text-black max-w-8xl mx-auto p-6 font-sans">
 
     <!-- Header -->
-<header class="p-6 flex items-center justify-between relative">
-  <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe</a>
+    <header class="p-6 flex items-center justify-between">
 
-  <!-- Desktop Nav -->
-  <nav class="hidden md:flex gap-8 text-sm font-medium">
-    <a href="/" class="hover:opacity-60 transition">Work</a>
-    <a href="/comics" class="hover:opacity-60 transition">Comics</a>
-    <a href="/about" class="hover:opacity-60 transition">About</a>
-  </nav>
+      <!-- Logo -->
+      <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe</a>
 
-  <!-- Mobile Menu Toggle -->
-  <MobileMenuToggle />
-</header>
+      <!-- Nav (always visible, non-responsive) -->
+      <nav class="flex gap-8 text-sm font-medium">
+        <a href="/" class="hover:opacity-60 transition">Work</a>
+        <a href="/comics" class="hover:opacity-60 transition">Comics</a>
+        <a href="/about" class="hover:opacity-60 transition">About</a>
+      </nav>
+
+    </header>
 
     <!-- Main Content -->
     <main class="max-w-8xl mx-auto p-6">
