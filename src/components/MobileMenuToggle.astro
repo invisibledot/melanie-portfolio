@@ -1,12 +1,12 @@
 ---
 ---
-<div class="md:hidden relative">
+<div class="md:hidden relative" client:idle>
 
-  <!-- Hamburger Button -->
-  <button id="mobile-button" class="text-2xl z-20 relative" aria-label="Toggle Menu">☰</button>
+  <button class="hamburger text-2xl z-20 relative" aria-label="Toggle Menu">
+    ☰
+  </button>
 
-  <!-- Mobile Menu: Full screen overlay -->
-  <div id="mobile-menu" class="hidden fixed top-0 left-0 w-screen h-screen bg-white z-10 flex flex-col pt-24 px-6">
+  <div class="mobile-menu hidden fixed top-0 left-0 w-screen h-screen bg-white z-10 flex flex-col pt-24 px-6">
     <nav class="flex flex-col gap-6 text-lg font-medium">
       <a href="/" class="hover:opacity-60 transition">Work</a>
       <a href="/comics" class="hover:opacity-60 transition">Comics</a>
@@ -16,9 +16,10 @@
 
 </div>
 
-<script client:load>
-  const button = document.getElementById('mobile-button');
-  const menu = document.getElementById('mobile-menu');
+<script>
+  const container = document.currentScript.parentElement;
+  const button = container.querySelector('.hamburger');
+  const menu = container.querySelector('.mobile-menu');
 
   button.addEventListener('click', () => {
     menu.classList.toggle('hidden');
