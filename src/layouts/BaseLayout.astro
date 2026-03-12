@@ -26,12 +26,14 @@ const { title, description, image, url } = Astro.props;
 <header class="p-6 flex items-center justify-between relative">
   <a href="/" class="text-xl font-semibold tracking-tight">Stephen Crowe</a>
 
+  <!-- Desktop Nav -->
   <nav class="hidden md:flex gap-8 text-sm font-medium">
     <a href="/" class="hover:opacity-60 transition">Work</a>
     <a href="/comics" class="hover:opacity-60 transition">Comics</a>
     <a href="/about" class="hover:opacity-60 transition">About</a>
   </nav>
 
+  <!-- Mobile Menu Toggle -->
   <MobileMenuToggle />
 </header>
 
