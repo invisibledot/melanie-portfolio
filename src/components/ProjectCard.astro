@@ -2,6 +2,7 @@
 const { title, cover, slug } = Astro.props;
 ---
 
+<div class="mb-10 break-inside-avoid">
 <a href={`/work/${slug}`} class="block group">
 
   <img
@@ -13,3 +14,4 @@ const { title, cover, slug } = Astro.props;
   <h3 class="text-lg font-semibold">{title}</h3>
 
 </a>
+</div>
