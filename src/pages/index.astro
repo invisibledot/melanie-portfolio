@@ -1,31 +1,34 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { getCollection } from "astro:content";
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Nav from "../components/Navbar.astro"
 
-const projects = await getCollection("projects");
+const { title, description, image, url } = Astro.props;
 ---
 
-<BaseLayout
-  title="Stephen Crowe, Graphic Designer & Illustrator"
-  description="Portfolio of Stephen Crowe — graphic design, illustration, and comics."
-  url="https://www.invisibledot.net"
->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
 
-<h1 class="text-4xl font-bold mb-12">
-Graphic Design & Illustration
-</h1>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <!-- SEO -->
+    <SEO title="Melanie Amaral" description="Portfolio of Melanie Amaral — Commercial art and design" image={image} url="https://www.melanieamaral.com" />
+  </head>
 
-{projects.map((project) => (
-  <ProjectCard
-    title={project.data.title}
-    cover={project.data.cover}
-    slug={project.slug}
-  />
-))}
+  <body class="bg-white text-black max-w-7xl mx-auto p-6 font-sans">
 
-</div>
 
-</BaseLayout>
+    <!-- Main Content -->
+    <main class="max-w-8xl mx-auto p-6">
+      <h1 class="text-4xl font-bold mb-12 text-center">
+        Melanie Amaral
+      </h1>
+    </main>
+
+  </body>
+</html>

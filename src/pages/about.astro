@@ -1,34 +1,42 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import Portrait from '../assets/mel-back-1.jpg';
 ---
 
 <BaseLayout
-  title="Stephen Crowe - About"
-  description="Portfolio of Stephen Crowe — graphic design, illustration, and comics."
-  url="https://www.invisibledot.net/about"
+  title="Melanie Amaral - About"
+  description="Portfolio of Melanie Amaral — Commercial art and design."
+  url="https://www.melanieamaral.com/about"
 >
 
-<div class="prose prose-lg prose-slate max-w-2xl">
+<h1 class="text-4xl font-bold mb-12">
+  About/Contact
+</h1>
 
-  <h1>About</h1>
+<div class="flex flex-col-reverse md:flex-row items-start justify-center gap-8 md:gap-12">
+  <div class="w-full md:w-1/3 flex-shrink-0">
+    <Image 
+      src={Portrait} 
+      alt="A photograph of Melanie from behind." 
+      class="w-full h-auto object-cover rounded-lg" 
+    />
+  </div>
 
-  <p>
-    Stephen Crowe is a designer and illustrator from the UK, based in Gothenburg, Sweden. He is the Lead Designer for 
-    <a href="https://www.thirdplacebooks.com/">Third Place Books</a>, 
-    a chain of three community bookstores in and around Seattle, and Art Director for 
-    <a href="https://socialistcall.com/"><i>The Call</i></a>.
-  </p>
-
-  <p>
-    <a href="mailto:stephen@invisibledot.net">stephen@invisibledot.net</a>
-  </p>
-
-  <p>
-    <a href="https://invisibledot.substack.com/">Substack</a> • 
-    <a href="https://www.instagram.com/invisibledot/">Instagram</a> • 
-    <a href="https://www.linkedin.com/in/stephen-crowe-9945492b7/">LinkedIn</a>
-  </p>
-
+  <div class="prose prose-lg prose-slate max-w-2xl w-full">
+    <p>
+      Melanie Amaral is an artist and designer with over nine years of experience in commercial art consulting.
+    </p>
+    <p>
+      As lead digital artist for Grand Image, she has quoted, produced, and oversaw large-budget commissions in a variety of formats, such as wall covering, mixed media, painting, and sculpture. She’s a versatile artist who is able to create art in a variety of styles, and at any scale – from small framed pieces to multi-story murals. She has created work for a wide range of prestigious clients, including Google, Disney, Hilton, American Campus, Anthropologie, and Caesar’s Palace.
+    </p>
+    <p>
+      In her spare time she enjoys hiking, traveling, drawing comic books with her husband, and searching fruitlessly for the perfect cardigan.
+    </p>
+    <p>
+      <a href="mailto:melanieamaral@gmail.com">melanieamaral@gmail.com</a>
+    </p>
+  </div>
 </div>
 
 </BaseLayout>
