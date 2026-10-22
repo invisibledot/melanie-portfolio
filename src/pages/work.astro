@@ -1,31 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { getCollection } from "astro:content";
-
-const projects = await getCollection("projects");
 ---
 
 <BaseLayout
-  title="Melanie Amaral, Artist & Illustrator"
-  description="Portfolio of Melanie Amaral — Commercial art and design"
-  url="https://www.melanieamaral.com"
+  title="Melanie Amaral - Portfolio"
+  description="Portfolio of Melanie Amaral — Commercial art and design."
+  url="https://www.melanieamaral.com/work"
 >
 
 <h1 class="text-4xl font-bold mb-12">
-Commercial art and design
+  Portfolio — down for maintenance
 </h1>
 
-<div class="columns-1 md:columns-2 gap-10">
-
-{projects.map((project) => (
-  <ProjectCard
-    title={project.data.title}
-    cover={project.data.cover}
-    slug={project.slug}
-  />
-))}
-
+<div class="prose prose-lg prose-slate max-w-2xl w-full">
+  <p>
+    This page is being refurbished right now. Please come back later, or email me at <a href="mailto:melanieamaral@gmail.com">melanieamaral@gmail.com</a>
+  </p>
 </div>
 
 </BaseLayout>

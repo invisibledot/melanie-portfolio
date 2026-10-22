@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import Portrait from '../assets/mel-back-1.jpg';
+---
+
+<BaseLayout
+  title="Melanie Amaral - Portfolio"
+  description="Portfolio of Melanie Amaral — Commercial art and design."
+  url="https://www.melanieamaral.com/work"
+>
+
+<h1 class="text-4xl font-bold mb-12">
+  Portfolio
+</h1>
+
+  <div class="prose prose-lg prose-slate max-w-2xl w-full">
+    <p>
+      This page is being refurbished!
+    </p>
+</div>
+
+</BaseLayout>
